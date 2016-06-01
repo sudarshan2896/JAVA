@@ -1,0 +1,66 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.Applet;
+
+public class MenuDemo extends Frame implements ActionListener
+{
+	Menu menu;
+	MenuBar menubar;
+	MenuItem m1,m2,m3;
+	Label label;
+	MenuDemo(String title)
+	{
+		super(title);
+		label=new Label("wc to RAT");
+		add(label);
+		
+		menubar=new MenuBar();
+		
+		menu=new Menu("File");
+		
+		m1=new MenuItem("Item1");
+		menu.add(m1);
+		m1.addActionListener(this);
+		
+		m2=new MenuItem("Item2");
+		menu.add(m2);
+		m2.addActionListener(this);
+		
+		m3=new MenuItem("Item3");
+		menu.add(m3);
+		m3.addActionListener(this);
+		
+		menubar.add(menu);
+		
+		setMenuBar(menubar);
+		addWindowListener(new WindowAdapter()
+				{
+					public void windowClosing(WindowEvent e)
+					{
+						System.exit(0);
+					}
+				});
+		setSize(300,400);
+	}
+	public void actionPerformed(ActionEvent event)
+	{
+		if(event.getSource()==m1)
+		{
+			label.setText("Item1 clicked");
+		}
+		else if(event.getSource()==m2)
+		{
+			label.setText("Item2 clicked");
+		}
+		else if(event.getSource()==m3)
+		{
+			label.setText("Item3 clicked");
+		}
+	}
+	public static void main(String args[])
+	{
+		MenuDemo md=new MenuDemo("Creating Menus:RAT");
+		md.setVisible(true);
+	}
+	
+}
